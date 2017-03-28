@@ -14,7 +14,7 @@ app = Flask(__name__)
 parser = OptionParser()
 parser.add_option('-g', '--group', dest='vg_name', help='VG name to use')
 parser.add_option('--host', dest='host', help='IP address to listen', default='127.0.0.1')
-parser.add_option('-p', '--port', dest='port', help='Port to listen', default=5000)
+parser.add_option('-p', '--port', type='int', dest='port', help='Port to listen', default=5000)
 parser.add_option('-i', '--iscsi-storage', dest='iscsi_storage', help="SAN network IQN part of iSCSI storage name")
 parser.add_option('--tgt-confdir', dest='tgt_confdir', help="tgt daemon config file directory", default="/etc/tgt/conf.d")
 
@@ -169,4 +169,4 @@ def remove_lv(namespace, name):
     }), 200
 
 if __name__ == "__main__":
-    app.run(host=options.host, port=int(options.port))
+    app.run(host=options.host, port=options.port)
