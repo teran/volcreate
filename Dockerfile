@@ -1,18 +1,16 @@
-FROM alpine:latest
+FROM ubuntu:xenial
 
-RUN apk --update --no-cache add \
-      ca-certificates \
-      freetype-dev \
-      g++ \
-      gcc \
+RUN apt-get update && \
+    apt-get install -y \
       lvm2 \
-      pkgconfig \
       python \
       python-dev \
-      py2-pip \
-      openssl && \
-    rm -vf /var/cache/apk/* && \
-    update-ca-certificates
+      python-pip \
+      python-pkgconfig \
+      tgt && \
+    apt-get clean && \
+    rm -rvf /var/lib/apt/lists/*
+
 
 RUN pip install --no-cache-dir --upgrade pip && \
     find / -name '*.pyc' -or -name '*.pyo' -delete
