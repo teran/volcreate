@@ -55,7 +55,7 @@ def create_tgt(namespace, name):
     try:
         fp = open(os.path.join(options.tgt_confdir, volume_name+'.conf'), 'w')
         fp.write(
-            render_template_string(open('tgt.conf.j2').read(), **template_options))
+            render_template_string(open('/srv/tgt.conf.j2').read(), **template_options))
         fp.close()
 
         subprocess.call(["service", "tgt", "reload"])
