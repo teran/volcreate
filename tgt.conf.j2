@@ -1,0 +1,5 @@
+<target {{ iscsi_storage }}:{{ volume_name }}>
+  write-cache on
+  backing-store /dev/{{ vg_name }}/{{ volume_name }}
+  initiator-address {{ initiator }}
+</target>
